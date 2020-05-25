@@ -1,0 +1,81 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "iPhone 6s 32GB",
+        "price": 21000,
+        "qty": 3,
+        "description": "iPhone 6s 32GB from Apple"
+      },
+      {
+        "id": 2,
+        "name": "iPhone 7 32GB",
+        "price": 25000,
+        "qty": 25,
+        "description": "iPhone 7 32GB from Apple"
+      },
+      {
+        "id": 3,
+        "name": "iPhone 8 32GB",
+        "price": 35000,
+        "qty": 10,
+        "description": "iPhone 8 32GB from Apple"
+      },
+      {
+        "id": 4,
+        "name": "iPhone X 32GB",
+        "price": 50000,
+        "qty": 2,
+        "description": "iPhone X 64GB from Apple"
+      },
+      {
+        "id": 5,
+        "name": "iPhone Xs 64GB",
+        "price": 65000,
+        "qty": 10,
+        "description": "iPhone Xs 64GB from Apple"
+      },
+      {
+        "id": 6,
+        "name": "iPhone 11 64GB",
+        "price": 79000,
+        "qty": 15,
+        "description": "iPhone 11 64GB from Apple"
+      },
+      {
+        "id": 7,
+        "name": "iPhone 11 Pro 512GB",
+        "price": 109000,
+        "qty": 30,
+        "description": "iPhone 11 Pro 512GB from Apple"
+      },
+      {
+        "id": 8,
+        "name": "iPhone SE 2020 64GB",
+        "price": 48000,
+        "qty": 50,
+        "description": "iPhone SE 2 64GB from Apple"
+      },
+      {
+        "id": 9,
+        "name": "iPhone Xs Max 256GB",
+        "price": 97800,
+        "qty": 1,
+        "description": "iPhone Xs Max 256GB from Apple"
+      },
+      {
+        "id": 10,
+        "name": "iPhone 7 Plus 32GB",
+        "price": 43000,
+        "qty": 7,
+        "description": "iPhone 7 Plus 32GB from Apple"
+      },
+      {
+        "id": 11,
+        "name": "iPhone 5s 16GB",
+        "price": 18900,
+        "qty": 0,
+        "description": "iPhone 5s 16GB from Apple"
+      }
+    ]
+  }
