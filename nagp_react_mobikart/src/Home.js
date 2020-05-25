@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import M from "materialize-css";
 import ReactPaginate from 'react-paginate';
 import './home.css'
-import { setProductList, addProductToCart } from './Actions'
+import { setProductList, addProductToCart, showProductDetails } from './Actions'
 import ProductDetailsModal from './ProductDetailsModal';
 
 class Product {
@@ -117,6 +117,10 @@ class Home extends Component {
         })
     }
 
+    handleClicks(id) {
+        this.props.showProductDetails(id)
+    }
+
     render() {
         let products
         if (this.state.filtered) {
@@ -137,7 +141,7 @@ class Home extends Component {
                                 <a onClick={() => this.clickHandler()}>₹ {product.productPrice}/-</a>
                                 <a onClick={() => { this.handleClick(product.productId, product.productQtyInStock) }}>Buy Now</a>
                                 <a onClick={() => this.clickHandler()}>{this.productQtyText(product)}</a>
-                                <ProductDetailsModal className="card-action" />
+                                <ProductDetailsModal onClick={this.handleClicks(product.productId)}>hello</ProductDetailsModal>
                             </div>
                         </div>
                     </div>
@@ -183,7 +187,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         setProductList: (products) => { dispatch(setProductList(products)) },
-        addProductToCart: (id) => { dispatch(addProductToCart(id)) }
+        addProductToCart: (id) => { dispatch(addProductToCart(id)) },
+        showProductDetails: (id) => { dispatch(showProductDetails(id))}
     }
 }
 

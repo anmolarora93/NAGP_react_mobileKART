@@ -1,9 +1,11 @@
-import { ADD_MOBILE_TO_CART, REMOVE_MOBILE_FROM_CART, ADD_SHIPPING_FOR_PRIME, ADD_N_NUMBER_OF_ITEMS, REMOVE_N_NUMBER_OF_ITEMS, SET_PRODUCT_LIST, REMOVE_SHIPPING_COST } from './Actions'
+import { ADD_MOBILE_TO_CART, REMOVE_MOBILE_FROM_CART, ADD_SHIPPING_FOR_PRIME, ADD_N_NUMBER_OF_ITEMS, REMOVE_N_NUMBER_OF_ITEMS, SET_PRODUCT_LIST, REMOVE_SHIPPING_COST, SHOW_PRODUCT_DETAILS } from './Actions'
 
 const initState = {
     products: [],
     addedItems: [],
-    total: 0
+    productToDisplay: [],
+    total: 0,
+    expressShipping: true
 }
 const cartReducer = (state = initState, action) => {
 
@@ -11,6 +13,15 @@ const cartReducer = (state = initState, action) => {
         return {
             ...state,
             products: action.products
+        }
+    }
+
+    if(action.type == SHOW_PRODUCT_DETAILS) {
+        let itemToDisplay = state.products.filter(product => product.productId == action.id)
+        state.productToDisplay = []
+        return {
+            ...state,
+            productToDisplay: itemToDisplay
         }
     }
 
@@ -81,14 +92,16 @@ const cartReducer = (state = initState, action) => {
     if (action.type === ADD_SHIPPING_FOR_PRIME) {
         return {
             ...state,
-            total: state.total + action.cost
+            total: state.total + action.cost,
+            expressShipping: true
         }
     }
 
     if (action.type === REMOVE_SHIPPING_COST) {
         return {
             ...state,
-            total: state.total - action.cost
+            total: state.total - action.cost,
+            expressShipping: false
         }
     }
 

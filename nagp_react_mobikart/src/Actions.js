@@ -3,6 +3,7 @@
 // Action Types
 // Using constants since strings can be passed incorrectly
 export const SET_PRODUCT_LIST = 'SET_PRODUCT_LIST';
+export const SHOW_PRODUCT_DETAILS = 'SHOW_PRODUCT_DETAILS';
 export const ADD_MOBILE_TO_CART = 'ADD_MOBILE_TO_CART';
 export const REMOVE_MOBILE_FROM_CART = 'REMOVE_MOBILE_FROM_CART';
 export const REMOVE_N_NUMBER_OF_ITEMS = 'REMOVE_N_NUMBER_OF_ITEMS';
@@ -15,6 +16,11 @@ export const REMOVE_SHIPPING_COST = 'REMOVE_SHIPPING_COST';
 // Set List of Products fetched from Server
 export const setProductList = (products) => {
     return { type: SET_PRODUCT_LIST, products }
+}
+
+// Show Product Details
+export const showProductDetails = (id) => {
+    return { type: SHOW_PRODUCT_DETAILS, id }
 }
 
 // Add A Product with Product ID To Cart

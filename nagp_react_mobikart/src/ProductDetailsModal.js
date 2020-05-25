@@ -18,13 +18,9 @@ class ProductDetailsModal extends Component {
     }
 
     handleDetails() {
-        let product = this.props.products.filter(product => product.productId == 1)
-        let name = ""
-        product.forEach (p => {
-            console.log(p.productName)
-            name = p.productName
+        this.props.product.forEach(p => {
+            return p.productName
         })
-        return name
     }
 
     render() {
@@ -49,7 +45,7 @@ class ProductDetailsModal extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        products: state.products
+        product: state.productToDisplay
     }
 }
 

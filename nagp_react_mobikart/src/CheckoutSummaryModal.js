@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import { connect } from 'react-redux'
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 import moment from "moment";
 
 class CheckOutSummaryModal extends Component {
 
+    orderPlacementFailEmptyCart = "Your Order Cannot be Placed since your Cart is Empty. Try Adding few items"
     orderPlacedSuccess = " Your Order has been placed successfully with Order Id: "
     orderPlacedFailure = "Order could not be placed. Please login to continue!"
+    isUserLoggedIn = false
 
     componentDidMount() {
         const options = {
@@ -24,18 +27,37 @@ class CheckOutSummaryModal extends Component {
     checkUserStatus() {
         var userItem = sessionStorage.getItem("user")
         if (userItem != null) {
-            return this.orderPlacedSuccess + " " + this.generateProductID()
+            this.isUserLoggedIn = true
+            if (this.props.addedItems.length == 0) {
+                return this.orderPlacementFailEmptyCart
+            } else {
+                return this.orderPlacedSuccess + " " + this.generateProductID()
+            }
         } else {
+            this.isUserLoggedIn = false
             return this.orderPlacedFailure
         }
     }
 
     getExpectedDeliveryDate() {
-        return `Your order is expected to be delivered by: ${this.getDate()}`
+        if (!this.props.addedItems.length == 0 && this.isUserLoggedIn) {
+            if (this.props.expressShipping) {
+                return `Your order is expected to be delivered by: ${this.getDate()}`
+            } else {
+                return `Your order is expected to be delivered by: ${this.getLongerDate()}`
+            }
+        } else {
+            return `Get Your Product Delivered by ${this.getDate()} if you order now and select express shipping`
+        }
+        
     }
 
     getDate() {
         return moment().add(1, 'days')
+    }
+
+    getLongerDate() {
+        return moment().add(5,'days')
     }
 
     generateProductID() {
@@ -63,4 +85,11 @@ class CheckOutSummaryModal extends Component {
     }
 }
 
-export default CheckOutSummaryModal;
+const mapStateToProps = (state) => {
+    return {
+        addedItems: state.addedItems,
+        expressShipping: state.expressShipping
+    }
+}
+
+export default connect(mapStateToProps) (CheckOutSummaryModal);
